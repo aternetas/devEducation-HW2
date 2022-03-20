@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayList", "ArrayList\ArrayList.csproj", "{A14C66E3-50CB-457C-A7B6-C641BE379434}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myhomework2", "ArrayList\myhomework2.csproj", "{A14C66E3-50CB-457C-A7B6-C641BE379434}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayList", "MyArrayList\MyArrayList.csproj", "{D01CA6AF-54A4-4A55-ACA4-53A900486727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLists", "MyArrayList\MyLists.csproj", "{D01CA6AF-54A4-4A55-ACA4-53A900486727}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
