@@ -78,14 +78,7 @@ namespace MyLists
         // удаление по индексу одного элемента (task 6)
         public void RemoveByIndex(int index)
         {
-            for (int i = 0; i < Lenght; i++)
-            {
-                if (i == index)
-                {
-                    MoveOneStepLeft(index);
-                    break;
-                }
-            }
+            MoveOneStepLeft(index);
             Lenght--;
         }
 
@@ -262,10 +255,76 @@ namespace MyLists
         }
 
         // сортировка по возрастанию (task 19)
-        // сортировка по убыванию (task 20)
-        // удаление по значению первого(вернуть индекс)(-1 - ничего не удалил) (task 21)
-        // удаление по значению всех(вернуть кол-во)(0 - ничего не удалил) (task 22)
+        public void SortAscending()
+        {
+            for (int i = 0; i < Lenght - 1; i++)
+            {
+                int min = i;
+                for (int j = i + 1; j < Lenght; j++)
+                {
+                    if (_array[j] < _array[min])
+                    {
+                        min = j;
+                    }
+                }
+                int tmp = _array[i];
+                _array[i] = _array[min];
+                _array[min] = tmp;
+            }
+        }
 
+        // сортировка по убыванию (task 20)
+        public void SortDescending()
+        {
+            for (int i = 0; i < Lenght; i++)
+            {
+                for (int j = Lenght - 1; j > i; j--)
+                {
+                    if (_array[j] > _array[j - 1])
+                    {
+                        int tmp = _array[j];
+                        _array[j] = _array[j - 1];
+                        _array[j - 1] = tmp;
+                    }
+                }
+            }
+
+        }
+        // удаление по значению первого(вернуть индекс)(-1 - ничего не удалил) (task 21)
+        public int ClearFirstValue(int value)
+        {
+            int index = -1;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if (_array[i] == value)
+                {
+                    MoveOneStepLeft(i);
+                    Lenght--; 
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+        // удаление по значению всех(вернуть кол-во)(0 - ничего не удалил) (task 22)
+        public int ClearAllByValue(int value)
+        {
+            int count = 0;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if(_array[i] == value)
+                {
+                    count++;
+                }
+                else
+                {
+                    _array[i - count] = _array[i];
+                }
+            }
+            Lenght -= count;
+            return count;
+        }
 
 
 
