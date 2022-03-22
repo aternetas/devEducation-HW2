@@ -5,13 +5,13 @@
 //int result = list3.ClearFirstValue(2);
 //Console.Write(result);
 //list3.Write();
-int[] array2 = new int[] { 2, 1, 4, 3, 5, 0 };
+//int[] array2 = new int[] { 2, 1, 4, 3, 5, 0 };
 
-ArrayList list = new ArrayList(array2);
-list.SortAscending();
-list.Write();
-list.SortDescending();
-list.Write();
+//ArrayList list = new ArrayList(array2);
+//list.SortAscending();
+//list.Write();
+//list.SortDescending();
+//list.Write();
 ////list.Reverse();
 ////list.Write();
 //ArrayList list2 = new ArrayList(array2);

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MyLists
+﻿namespace MyLists
 {
     public class ArrayList
     {
@@ -24,8 +22,17 @@ namespace MyLists
 
         public ArrayList(int[] array)
         {
-            _array = array;
-            Lenght = _array.Length;
+            if (array == null || array.Length == 0)
+            {
+                _array = new int[8];
+                Lenght = 0;
+            }
+            else
+            {
+                _array = array;
+                Lenght = array.Length;
+                UpSize();
+            }
         }
 
         // добавление значения в конец (task 1)
@@ -345,6 +352,44 @@ namespace MyLists
                 Console.Write($"{_array[i]} ");
             }
             Console.WriteLine();
+        }
+
+        public override string ToString()
+        {
+            string s = "";
+            for (int i = 0; i < Lenght; i++)
+            {
+                s += $"{_array[i]} ";
+            }
+            return s;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool isEqual = true;
+            if (obj == null || !(obj is ArrayList))
+            {
+                isEqual = false;
+            }
+            else
+            { 
+                ArrayList list = (ArrayList)obj;
+                if (list.Lenght != this.Lenght)
+                {
+                    isEqual = false;
+                }
+                else 
+                {
+                    for (int i = 0; i < Lenght; i++)
+                    {
+                        if (list[i] != this[i])
+                        {
+                            isEqual = false;
+                        }
+                    }
+                }
+            }   
+            return isEqual;
         }
 
         private void UpSize()
