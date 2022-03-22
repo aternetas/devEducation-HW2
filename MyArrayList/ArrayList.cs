@@ -3,6 +3,25 @@
     public class ArrayList
     {
         public int Lenght { get; private set; }
+        public int this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Lenght)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return _array[index];
+            }
+            set
+            {
+                if (index < 0 || index >= Lenght)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                _array[index] = value;
+            }
+        }
 
         private int[] _array;
 
@@ -24,7 +43,7 @@
         {
             if (array == null || array.Length == 0)
             {
-                _array = new int[8];
+                _array = new int[1];
                 Lenght = 0;
             }
             else
@@ -60,7 +79,7 @@
         // добавление значения по индексу (task 3)
         public void Insert(int index, int value)
         {
-            if (Lenght + 1 >= _array.Length)
+            if (Lenght >= _array.Length)
             {
                 UpSize();
             }
@@ -72,12 +91,28 @@
         // удаление из конца одного элемента (task 4)
         public void RemoveLast()
         {
+            if (Lenght == 0)
+            {
+                throw new Exception("ArrayList is empty");
+            }
+            if (Lenght <= _array.Length / 2)
+            {
+                DownSize();
+            }
             Lenght--;
         }
 
         // удаление из начала одного элемента (task 5)
         public void RemoveFirst()
         {
+            if (Lenght == 0)
+            {
+                throw new Exception("ArrayList is empty");
+            }
+            if (Lenght <= _array.Length / 2)
+            {
+                DownSize();
+            }
             MoveOneStepLeft(0);
             Lenght--;
         }
@@ -142,6 +177,10 @@
             {
                 throw new Exception("ArrayList is empty");
             }
+            if (index < 0 || index >= Lenght)
+            {
+                throw new IndexOutOfRangeException();
+            }
             return _array[index];
         }
 
@@ -167,9 +206,9 @@
             {
                 throw new Exception("ArrayList is empty");
             }
-            if (index > Lenght)
+            if (index < 0 || index >= Lenght)
             {
-                throw new Exception("The index does not exist");
+                throw new IndexOutOfRangeException();
             }
             _array[index] = value;
         }
@@ -401,14 +440,14 @@
 
         private void DownSize()
         {
-            int newLength = _array.Length / 3;
+            int newLength = (int)(_array.Length / 3.0d + 1);
             int [] newArray = new int[newLength];
             Copy(newArray);
         }
 
         private void Copy(int[] newArray)
         {
-            for (int i = 0; i < _array.Length; i++)
+            for (int i = 0; i < Lenght; i++)
             {
                 newArray[i] = _array[i];
             }
