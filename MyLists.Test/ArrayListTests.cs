@@ -49,6 +49,66 @@ namespace MyLists.Test
             Assert.AreEqual(expectedList, actualList);
         }
 
+        [TestCaseSource(typeof(RemoveByIndexTestSource))]
+        public void RemoveByIndexTest(int index, ArrayList list, ArrayList expectedList)
+        {
+            ArrayList actualList = list;
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(RemoveRangeFromEndTestSource))]
+        public void RemoveRangeFromEndTest(int count, ArrayList list, ArrayList expectedList)
+        {
+            ArrayList actualList = list;
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(RemoveRangeFromEndNegativeTestSource))]
+        public void RemoveRangeFromEndTest_WhenListIsEmpty_ShouldThrowException(int count, ArrayList list)
+        {
+            Assert.Throws<Exception>(() => list.RemoveRangeFromEnd(count));
+        }
+
+        [TestCaseSource(typeof(RemoveRangeFromEnd_RemoveRangeFromBeginningNegativeTestSource))]
+        public void RemoveRangeFromEndTest_RemoveRangeFromBeginningTest_WhenCountBiggerLenghtOrCountIsLessZero_ShouldThrowException(int count, ArrayList list)
+        {
+            int a;
+            Assert.Throws<Exception>(() => a = list.Lenght);
+        }
+
+        [TestCaseSource(typeof(RemoveRangeFromBeginninTestSource))]
+        public void RemoveRangeFromBeginningTest(int count, ArrayList list, ArrayList expectedList)
+        {
+            ArrayList actualList = list;
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(RemoveRangeFromBeginningNegativeTestSource))]
+        public void RemoveRangeFromBeginningTest_WhenListIsEmpty_ShouldThrowException(int count, ArrayList list)
+        {
+            Assert.Throws<Exception>(() => list.RemoveRangeFromBeginning(count));
+        }
+
+        [TestCaseSource(typeof(RemoveRangeFromIndexTestSource))]
+        public void RemoveRangeFromIndexTest(int count, int index, ArrayList list, ArrayList expectedList)
+        {
+            ArrayList actualList = list;
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [Test]
+        public void RemoveRangeFromIndexTest_WhenListIsEmpty_ShouldThrowException(int count, int index)
+        {
+            ArrayList list = new ArrayList();
+            Assert.Throws<Exception>(() => list.RemoveRangeFromIndex(count, index));
+        }
+
+        [TestCaseSource(typeof(RemoveRangeFromIndexNegativeTestSource))]
+        public void RemoveRangeFromIndexTest_WhenCountBiggerLenghtOrCountIsLessZero_ShouldThrowException(int count, int index, ArrayList list)
+        {
+            Assert.Throws<Exception>(() => list.RemoveRangeFromIndex(count, index));
+        }
+
         [TestCaseSource(typeof(GetLenghtTestSource))]
         public void GetLenghtTest(ArrayList list, int expected)
         {
@@ -77,14 +137,14 @@ namespace MyLists.Test
             Assert.AreEqual(expectedList, actualList);
         }
 
-        [TestCaseSource(typeof(ChangeByIndexNegativeTestSource1))]
+        [TestCaseSource(typeof(ChangeByIndexNegativeTestSource))]
         public void ChangeByIndexTest_WhenListIsEmpty_ShouldThrowException(int index, int value, ArrayList list)
         {
             Assert.Throws<Exception>(()=> list.ChangeByIndex(index, value));
         }
 
-        [TestCaseSource(typeof(ChangeByIndexNegativeTestSource2))]
-        public void ChangeByIndexTest_WhenIndexOutOfRangeOfList_ShouldThrowIndexOutOfRangeException(int index, ArrayList list)
+        [TestCaseSource(typeof(ChangeByIndex_RemoveByIndexNegativeTestSource))]
+        public void ChangeByIndex_RemoveByIndex_WhenIndexOutOfRangeOfList_ShouldThrowIndexOutOfRangeException(int index, ArrayList list)
         {
             int a;
             Assert.Throws<IndexOutOfRangeException>(() => a = list[index]);

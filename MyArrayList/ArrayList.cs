@@ -116,6 +116,10 @@
         // удаление по индексу одного элемента (task 6)
         public void RemoveByIndex(int index)
         {
+            if (index < 0 || index >= Lenght)
+            {
+                throw new IndexOutOfRangeException();
+            }
             MoveOneStepLeft(index);
             Lenght--;
         }
@@ -123,6 +127,14 @@
         // удаление из конца N элементов (task 7)
         public void RemoveRangeFromEnd(int count)
         {
+            if (count > Lenght || count < 0)
+            {
+                throw new Exception("count must be positive and < Lenght");
+            }
+            if (Lenght == 0)
+            {
+                throw new Exception("ArrayList is empty");
+            }
             Lenght -= count;
             int[] newArray = new int[Lenght];
             for (int i = 0; i < newArray.Length; i++)
@@ -135,6 +147,14 @@
         // удаление из начала N элементов (task 8)
         public void RemoveRangeFromBeginning(int count)
         {
+            if (count > Lenght || count < 0)
+            {
+                throw new Exception("count must be positive and < Lenght");
+            }
+            if (Lenght == 0)
+            {
+                throw new Exception("ArrayList is empty");
+            }
             Lenght -= count;
             int[] newArray = new int[Lenght];
             for (int i = 0; i < newArray.Length; i++)
@@ -147,6 +167,14 @@
         // удаление по индексу N элементов (task 9)
         public void RemoveRangeFromIndex(int count, int index)
         {
+            if (count > Lenght || count > (Lenght - index + 1) || count < 0)
+            {
+                throw new Exception("count must be positive and < Lenght");
+            }
+            if (Lenght == 0)
+            {
+                throw new Exception("ArrayList is empty");
+            }
             Lenght -= count;
             int[] newArray = new int[Lenght];
             for (int i = 0; i < index; i++)

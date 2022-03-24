@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace MyLists.Test.ArrayListTestsSources
 {
-    internal class ChangeByIndexNegativeTestSource1 : IEnumerable
+    internal class RemoveRangeFromBeginningNegativeTestSource : IEnumerable
     {
         public IEnumerator GetEnumerator()
         {
             yield return new object[]
             {
                 4,
-                5,
-                new ArrayList(new int[] { }),
+                new ArrayList(new int[] { })
             };
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLists.Test.ArrayListTestsSources
 {
-    internal class ChangeByIndexNegativeTestSource2 : IEnumerable
+    internal class ChangeByIndex_RemoveByIndexNegativeTestSource : IEnumerable
     {
         public IEnumerator GetEnumerator()
         {
