@@ -95,10 +95,6 @@
             {
                 throw new Exception("ArrayList is empty");
             }
-            if (Lenght <= _array.Length / 2)
-            {
-                DownSize();
-            }
             Lenght--;
         }
 
@@ -395,11 +391,12 @@
 
         public override string ToString()
         {
-            string s = "";
+            string s = "[ ";
             for (int i = 0; i < Lenght; i++)
             {
                 s += $"{_array[i]} ";
             }
+            s += "]";
             return s;
         }
 

@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections;
+using System;
 using MyLists.Test.ArrayListTestsSources;
 
 namespace MyLists.Test
@@ -34,6 +35,13 @@ namespace MyLists.Test
             Assert.AreEqual(expectedList, actualList);
         }
 
+        [Test]
+        public void RemoveLastTest_WhenListIsEmpty_ShouldThrowException()
+        {
+            ArrayList list = new ArrayList();
+            Assert.Throws<Exception>(() => list.RemoveLast());
+        }
+
         [TestCaseSource(typeof(RemoveFirstTestSource))]
         public void RemoveFirstTest(ArrayList list, ArrayList expectedList)
         {
@@ -55,12 +63,116 @@ namespace MyLists.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCaseSource(typeof(ReturnFirstIndexTestSource))]
+        public void ReturnFirstIndexTest(int value, ArrayList list, int expected)
+        {
+            int actual = list.ReturnFirstIndex(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(ChangeByIndexTestSource))]
+        public void ChangeByIndexTest(int index, int value, ArrayList list, ArrayList expectedList)
+        {
+            ArrayList actualList = list;
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(ChangeByIndexNegativeTestSource1))]
+        public void ChangeByIndexTest_WhenListIsEmpty_ShouldThrowException(int index, int value, ArrayList list)
+        {
+            Assert.Throws<Exception>(()=> list.ChangeByIndex(index, value));
+        }
+
+        [TestCaseSource(typeof(ChangeByIndexNegativeTestSource2))]
+        public void ChangeByIndexTest_WhenIndexOutOfRangeOfList_ShouldThrowIndexOutOfRangeException(int index, ArrayList list)
+        {
+            int a;
+            Assert.Throws<IndexOutOfRangeException>(() => a = list[index]);
+        }
+
+        [TestCaseSource(typeof(ReverseTestSource))]
+        public void ReverseTest(ArrayList list, ArrayList expectedList)
+        {
+            ArrayList actualList = list;
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(FindMaxValueTestSource))]
+        public void FindMaxValueTest(ArrayList list, int expected)
+        {
+            int actual = list.FindMaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void FindMaxValueTest_WhenListIsEmpty_ShouldThrowException()
+        {
+            ArrayList list = new ArrayList();
+            Assert.Throws<Exception>(() => list.FindMaxValue());
+        }
+
+        [TestCaseSource(typeof(FindMinValueTestSource))]
+        public void FindMinValueTest(ArrayList list, int expected)
+        {
+            int actual = list.FindMinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void FindMinValueTest_WhenListIsEmpty_ShouldThrowException()
+        {
+            ArrayList list = new ArrayList();
+            Assert.Throws<Exception>(() => list.FindMinValue());
+        }
+
+        [TestCaseSource(typeof(FindIndexOfMaxValueTestSource))]
+        public void FindIndexOfMaxValueTest(ArrayList list, int expected)
+        {
+            int actual = list.FindIndexOfMaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void FindIndexOfMaxValueTest_WhenListIsEmpty_ShouldThrowException()
+        {
+            ArrayList list = new ArrayList();
+            Assert.Throws<Exception>(() => list.FindIndexOfMaxValue());
+        }
+
+        [TestCaseSource(typeof(FindIndexOfMinValueTestSource))]
+        public void FindIndexOfMinValueTest(ArrayList list, int expected)
+        {
+            int actual = list.FindIndexOfMinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void FindIndexOfMinValueTest_WhenListIsEmpty_ShouldThrowException()
+        {
+            ArrayList list = new ArrayList();
+            Assert.Throws<Exception>(() => list.FindIndexOfMinValue());
+        }
+
+        [TestCaseSource(typeof(SortAscendingTestSource))]
+        public void SortAscendingTest(ArrayList list, ArrayList expectedList)
+        {
+            ArrayList actualList = list;
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(SortDescendingTestSource))]
+        public void SortDescendingTest(ArrayList list, ArrayList expectedList)
+        {
+            ArrayList actualList = list;
+            Assert.AreEqual(expectedList, actualList);
+        }
+
         [TestCaseSource(typeof(ClearFirstValueTestSource))]
-        public void ClearFirstValueTest(int value, ArrayList list, ArrayList expectedList, int extectedIndex)
+        public void ClearFirstValueTest(int value, ArrayList list, ArrayList expectedList, int expectedIndex)
         {
             int actualIndex = list.ClearFirstValue(value);
             ArrayList actualList = list;
-            Assert.AreEqual(extectedIndex, actualIndex);
+            Assert.AreEqual(expectedIndex, actualIndex);
             Assert.AreEqual(expectedList, actualList);
         }
 
