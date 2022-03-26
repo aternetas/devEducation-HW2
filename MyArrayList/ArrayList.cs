@@ -72,8 +72,8 @@
             {
                 UpSize();
             }
+            MoveOneStepRight(0);
             _array[0] = value;
-            Lenght++;
         }
 
         // добавление значения по индексу (task 3)
@@ -83,9 +83,12 @@
             {
                 UpSize();
             }
+            if (index < 0 || index >= Lenght)
+            {
+                throw new IndexOutOfRangeException();
+            }
             MoveOneStepRight(index);
             _array[index] = value;
-            Lenght++;
         }
 
         // удаление из конца одного элемента (task 4)
@@ -116,6 +119,10 @@
         // удаление по индексу одного элемента (task 6)
         public void RemoveByIndex(int index)
         {
+            if (Lenght == 0)
+            {
+                throw new Exception("ArrayList is empty");
+            }
             if (index < 0 || index >= Lenght)
             {
                 throw new IndexOutOfRangeException();
@@ -536,11 +543,11 @@
         {
             Lenght++;
             int[] newArray = new int[Lenght];
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < Lenght; i++)
             {
                 newArray[i] = _array[i];
             }
-            for (int i = index; i < Lenght; i++)
+            for (int i = index; i < Lenght - 1; i++)
             {
                 newArray[i + 1] = _array[i];
             }

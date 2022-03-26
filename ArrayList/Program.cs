@@ -6,9 +6,9 @@
 //list3.Write();
 int[] array = new int[] { 1, 2, 3, 4 };
 ArrayList list = new ArrayList(array);
-int[] array2 = new int[] { 5, 6 };
-ArrayList list2 = new ArrayList(array2);
-list.AddListByIndex(list2, 4);
+//int[] array2 = new int[] { 5, 6 };
+//ArrayList list2 = new ArrayList(array2);
+list.RemoveFirst();
 list.Write();
 //int result = list3.ClearFirstValue(2);
 //Console.Write(result);

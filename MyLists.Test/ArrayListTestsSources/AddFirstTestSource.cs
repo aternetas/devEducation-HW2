@@ -27,8 +27,8 @@ namespace MyLists.Test.ArrayListTestsSources
             yield return new object[]
             {
                 5,
-                new ArrayList(new int[] { 1, -5, 2, 0, 1 }),
-                new ArrayList(new int[] { 5, 1, -5, 2, 0, 1 }),
+                new ArrayList(new int[] { 1, 2, 3, 4 }),
+                new ArrayList(new int[] { 5, 1, 2, 3, 4 }),
             };
         }
     }
