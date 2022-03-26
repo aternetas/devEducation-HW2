@@ -396,14 +396,68 @@
             return count;
         }
 
+        // добавление списка(вашего самодельного) в конец (task 23)
+        public void AddListLast(ArrayList list)
+        {
+            if (list is null)
+            {
+                throw new NullReferenceException();
+            }
+            for (int i = 0; i < list.Lenght; i++)
+            {
+                this.AddLast(list[i]);
+            }
+        }
 
+        // добавление списка в начало (task 24)
+        public void AddListFirst(ArrayList list)
+        {
+            if (list is null)
+            {
+                throw new NullReferenceException();
+            }
+            int newLength = list.Lenght + this.Lenght;
+            int[] newArray = new int[newLength];
+            int tmp = 0;
+            for (int i = list.Lenght; i < newArray.Length; i++)
+            {
+                newArray[i] = this[tmp];
+                tmp++;
+            }
+            for (int i = 0; i < list.Lenght; i++)
+            {
+                newArray[i] = list[i];
+            }
+            this.Lenght = newLength;
+            this._array = newArray;
+        }
 
-
-
-
-        // добавление списка(вашего самодельного) в конец (task 24)
-        // добавление списка в начало (task 25)
-        // добавление списка по индексу (task 26)
+        // добавление списка по индексу (task 25)
+        public void AddListByIndex(ArrayList list, int index)
+        {
+            if (list is null)
+            {
+                throw new NullReferenceException();
+            }
+            int newLength = this.Lenght + list.Lenght;
+            int[] newArray = new int[newLength];
+            int count = 0;
+            for (int i = index; i < index + list.Lenght; i++)
+            {
+                newArray[i] = list[count];
+                count++;               
+            }
+            for (int i = 0; i < index; i++)
+            {
+                newArray[i] = this[i];
+            }
+            for (int i = index + list.Lenght; i < newArray.Length; i++)
+            {
+                newArray[i] = this[i - list.Lenght];
+            }
+            this.Lenght = newArray.Length;
+            this._array = newArray;          
+        }
 
         /// <summary>
         /// delete later
@@ -462,7 +516,6 @@
             int [] newArray = new int[newLength];
             Copy(newArray);           
         }
-
         private void DownSize()
         {
             int newLength = (int)(_array.Length / 3.0d + 1);
@@ -507,9 +560,5 @@
             }
             _array = newArray;
         }
-
-
-
-
     }
 }

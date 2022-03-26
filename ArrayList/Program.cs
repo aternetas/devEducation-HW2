@@ -4,10 +4,12 @@
 //ArrayList list3 = new ArrayList(array);
 //list3.AddLast(15);
 //list3.Write();
-int[] array2 = new int[] { 0, 0, 2, 1, 4, 5 };
+int[] array = new int[] { 1, 2, 3, 4 };
+ArrayList list = new ArrayList(array);
+int[] array2 = new int[] { 5, 6 };
 ArrayList list2 = new ArrayList(array2);
-list2.RemoveFirst();
-list2.Write();
+list.AddListByIndex(list2, 4);
+list.Write();
 //int result = list3.ClearFirstValue(2);
 //Console.Write(result);
 //list3.Write();

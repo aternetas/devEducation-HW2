@@ -10,6 +10,7 @@ namespace MyLists.Test
         [TestCaseSource(typeof(AddLastTestSource))]
         public void AddLastTest(int value, ArrayList list, ArrayList expectedList)
         {
+            list.AddLast(value);
             ArrayList actualList = list;
             Assert.AreEqual(expectedList, actualList);
         }
