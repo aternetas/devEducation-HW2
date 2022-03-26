@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections;
 using System;
 using MyLists.Test.ArrayListTestsSources;
+using MyLists.Test.ArrayListNegativeTestSources;
 
 namespace MyLists.Test
 {
@@ -244,6 +245,46 @@ namespace MyLists.Test
             ArrayList actualList = list;
             Assert.AreEqual(expectedCount, actualCount);
             Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(AddListLastTestSource))]
+        public void AddListLastTest(ArrayList list, ArrayList actualList, ArrayList expectedList)
+        {
+            actualList.AddListLast(list);
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(AddListLastNegativeTestSource))]
+        public void AddListLastTest_WhenListIsNull_ThrowNullReferenceException(ArrayList list, ArrayList actualList)
+        {
+            Assert.Throws<NullReferenceException>(() => actualList.AddListLast(list));
+        }
+
+
+        [TestCaseSource(typeof(AddListFirstTestSource))]
+        public void AddListFirstTest(ArrayList list, ArrayList actualList, ArrayList expectedList)
+        {
+            actualList.AddListFirst(list);
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(AddListFirstNegativeTestSource))]
+        public void AddListFirstTest_WhenListIsNull_ThrowNullReferenceException(ArrayList list, ArrayList actualList)
+        {
+            Assert.Throws<NullReferenceException>(() => actualList.AddListFirst(list));
+        }
+
+        [TestCaseSource(typeof(AddListByIndexTestSource))]
+        public void AddListByIndexTest(ArrayList list, int index, ArrayList actualList, ArrayList expectedList)
+        {
+            actualList.AddListByIndex(list, index);
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(AddListByIndexNegativeTestSource))]
+        public void AddListByIndexTest_WhenListIsNull_ThrowNullReferenceException(ArrayList list, int index, ArrayList actualList)
+        {
+            Assert.Throws<NullReferenceException>(() => actualList.AddListByIndex(list, index));
         }
     }
 }
