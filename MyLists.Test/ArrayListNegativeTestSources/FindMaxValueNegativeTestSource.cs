@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyLists.Test.ArrayListTestsSources
+namespace MyLists.Test.ArrayListNegativeTestSources
 {
-    internal class RemoveRangeFromEndNegativeTestSource : IEnumerable
+    internal class FindMaxValueNegativeTestSource : IEnumerable
     {
         public IEnumerator GetEnumerator()
         {
             yield return new object[]
             {
-                4,
                 new ArrayList(new int[] { })
             };
         }

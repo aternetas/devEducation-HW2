@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyLists.Test.ArrayListTestsSources
+namespace MyLists.Test.ArrayListNegativeTestSources
 {
-    internal class ChangeByIndexNegativeTestSource : IEnumerable
+    internal class FindMinValueNegativeTestSource : IEnumerable
     {
         public IEnumerator GetEnumerator()
         {
             yield return new object[]
             {
-                4,
-                5,
-                new ArrayList(new int[] { }),
+                new ArrayList(new int[] { })
             };
         }
     }

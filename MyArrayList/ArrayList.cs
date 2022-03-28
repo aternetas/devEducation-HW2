@@ -403,7 +403,7 @@
             return count;
         }
 
-        // добавление списка(вашего самодельного) в конец (task 23)
+        // добавление списка(вашего самодельного) в конец (task 24)
         public void AddListLast(ArrayList list)
         {
             if (list is null)
@@ -416,7 +416,7 @@
             }
         }
 
-        // добавление списка в начало (task 24)
+        // добавление списка в начало (task 25)
         public void AddListFirst(ArrayList list)
         {
             if (list is null)
@@ -439,7 +439,7 @@
             this._array = newArray;
         }
 
-        // добавление списка по индексу (task 25)
+        // добавление списка по индексу (task 26)
         public void AddListByIndex(ArrayList list, int index)
         {
             if (list is null)

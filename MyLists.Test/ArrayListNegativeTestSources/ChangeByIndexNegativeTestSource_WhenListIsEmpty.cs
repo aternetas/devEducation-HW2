@@ -4,9 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyLists.Test.ArrayListTestsSources
+namespace MyLists.Test.ArrayListNegativeTestSources
 {
-    internal class ChangeByIndex_RemoveByIndexNegativeTestSource : IEnumerable
+    internal class ChangeByIndexNegativeTestSource_WhenListIsEmpty : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            yield return new object[]
+            {
+                4,
+                5,
+                new ArrayList(new int[] { }),
+            };
+        }
+    }
+
+    internal class ChangeByIndex_RemoveByIndexNegativeTestSource_WhenIndexOutOfRangeOfList : IEnumerable
     {
         public IEnumerator GetEnumerator()
         {

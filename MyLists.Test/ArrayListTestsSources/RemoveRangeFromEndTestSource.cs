@@ -33,6 +33,13 @@ namespace MyLists.Test.ArrayListTestsSources
 
             yield return new object[]
             {
+                6,
+                new ArrayList(new int[] { 0, 1, 3, 6, -5, 4 }),
+                new ArrayList(new int[] { }),
+            };
+
+            yield return new object[]
+            {
                 0,
                 new ArrayList(new int[] { -2, 3, 4, 5 }),
                 new ArrayList(new int[] { -2, 3, 4, 5 }),
