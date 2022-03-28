@@ -31,7 +31,7 @@ namespace MyLists
                 }
                 return crnt.Value;
             }
-            set 
+            set
             {
                 if (index < 0 || index > Lenght)
                 {
@@ -46,8 +46,8 @@ namespace MyLists
             }
         }
 
-        public int Lenght 
-        { 
+        public int Lenght
+        {
             get
             {
                 int count = 0;
@@ -126,6 +126,173 @@ namespace MyLists
             }
         }
 
+        // добавление значения по индексу (task 3)
+        public void Insert(int index, int value)
+        {
+            if (index < 0 || index > Lenght - 1)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else if (_root is null)
+            {
+                throw new NullReferenceException();
+            }
+            Node crnt = _root;
+            if (index == 0)
+            {
+                _root = new Node(value);
+                _root.Next = crnt;
+            }
+            else
+            {
+                Node tmp;
+                for (int i = 1; i < index; i++)
+                {
+                    crnt = crnt.Next;
+
+                }
+                tmp = crnt.Next;
+                crnt.Next.Value = value;
+                crnt.Next = tmp;
+            }
+        }
+
+        // удаление из конца одного элемента (task 4)
+        public void RemoveLast()
+        {
+            if (_root is null)
+            {
+                throw new NullReferenceException();
+            }
+            _tail = null;
+        }
+
+        // удаление из начала одного элемента (task 5)
+        public void RemoveFirst()
+        {
+            if (_root is null)
+            {
+                throw new NullReferenceException();
+            }
+            _root = _root.Next;
+        }
+
+        // удаление по индексу одного элемента (task 6)
+        public void RemoveByIndex(int index)
+        {
+            if (index < 0 || index > Lenght - 1)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            if (index == 0)
+            {
+                _root = _root.Next;
+            }
+            else
+            {
+                Node crnt = _root;
+                for (int i = 1; i < index; i++)
+                {
+                    crnt = crnt.Next;
+                }
+                crnt.Next = crnt.Next.Next;
+            }
+        }
+
+        // удаление из конца N элементов (task 7)
+        public void RemoveRangeFromEnd(int count)
+        {
+            if (count < 0 || count > Lenght)
+            {
+                throw new ArgumentException("count must be > 0 & < lenght");
+            }
+            Node crnt = _root;
+            for (int i = 0; i < Lenght - count - 1; i++)
+            {
+                crnt = crnt.Next;
+            }
+            _tail = crnt;
+        }
+
+        // удаление из начала N элементов (task 8)
+        public void RemoveRangeFromBeginning(int count)
+        {
+            if (count < 0 || count > Lenght)
+            {
+                throw new ArgumentException("count must be > 0 & < lenght");
+            }
+            Node crnt = _root;
+            for (int i = 0; i < count; i++)
+            {
+                crnt = crnt.Next;
+            }
+            _root = crnt;
+        }
+
+        // удаление по индексу N элементов (task 9)
+        public void RemoveRangeFromIndex(int count, int index)
+        {
+            if (index < 0 || index > Lenght - 1)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else if (count < 0 || count > Lenght)
+            {
+                throw new ArgumentException("count must be >= 0 & < lenght");
+            }
+            else if (Lenght - count > index)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+        // вернуть длину (task 10)
+        public int GetLenght()
+        {
+            return Lenght;
+        }
+
+        // сортировка по возрастанию (task 19)
+        public void SortAscending()
+        {
+            int l = Lenght;
+            Node crnt;
+            Node prev;
+
+            for (int i = l - 2; i >= 0; i--)
+            {
+                if (i == 0)
+                {
+                    crnt = _root;
+                    if (crnt.Next != null && crnt.Value > crnt.Next.Value)
+                    {
+                        _root = crnt.Next;
+                        crnt.Next = _root.Next;
+                        _root.Next = crnt;
+                    }
+                    prev = _root;
+                }
+                else
+                {
+                    prev = GetNodeByIndex(i - 1);
+                    crnt = prev.Next;
+                }
+                while (crnt.Next != null && crnt.Value > crnt.Next.Value)
+                {
+                    prev.Next = crnt.Next;
+                    crnt.Next = prev.Next.Next;
+                    prev.Next.Next = crnt;
+
+                    prev = prev.Next;
+                }
+            }
+            _tail = GetNodeByIndex(l - 1);
+        }
+
         public override string ToString()
         {
             string s = "[ ";
@@ -139,7 +306,6 @@ namespace MyLists
             return s;
         }
 
-        //дописать
         public override bool Equals(object? obj)
         {
             bool isEqual = true;
@@ -156,18 +322,31 @@ namespace MyLists
                 }
                 else
                 {
-                    Node crnt = _root;
-                    while (crnt != null)
+                    Node thisCrnt = this._root;
+                    Node listCrnt = list._root;
+                    while (thisCrnt != null)
                     {
-                        if (crnt.Value != )
+                        if (thisCrnt.Value != listCrnt.Value)
                         {
                             isEqual = false;
                         }
-                        crnt = crnt.Next;
+                        thisCrnt = thisCrnt.Next;
+                        listCrnt = listCrnt.Next;
                     }
                 }
             }
             return isEqual;
+        }
+
+        private Node GetNodeByIndex(int index)
+        {
+            Node crnt = _root;
+            for (int i = 1; i <= index; i++)
+            {
+                crnt = crnt.Next;
+            }
+
+            return crnt;
         }
     }
 }
