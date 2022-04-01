@@ -7,27 +7,31 @@ namespace MyLists.Test
 {
     public class LinkedListTests
     {
-        [TestCaseSource(typeof(InsertTestCaseSource))]
-        public void InsertTest(int index, int value, LinkedList list, LinkedList expected)
+        [TestCaseSource(typeof(RemoveByIndexTestSource))]
+        public void RemoveByIndexTest(int index, LinkedList list, LinkedList expected)
         {
-            list.Insert(index, value);
-            LinkedList actual = list;
-            Assert.AreEqual(expected, actual);
+            list.RemoveByIndex(index);
+            Assert.AreEqual(expected, list);
         }
 
-        [TestCaseSource(typeof(RemoveRangeFromEndTestCaseSource))]
-        public void RemoveRangeFromEndTest(int count, LinkedList list, LinkedList expected)
+        [TestCaseSource(typeof(RemoveRangeFromIndexTestSource))]
+        public void RemoveRangeFromIndexTest(int index, int count, LinkedList list, LinkedList expected)
         {
-            list.RemoveRangeFromEnd(count);
-            LinkedList actual = list;
-            Assert.AreEqual(expected, actual);
+            list.RemoveRangeFromIndex(index, count);
+            Assert.AreEqual(expected, list);
         }
 
-        [TestCaseSource(typeof(RemoveRangeFromBeginningTestCaseSource))]
-        public void RemoveRangeFromBeginningTest(int count, LinkedList list, LinkedList expected)
+        [TestCaseSource(typeof(ReverseTestSource))]
+        public void ReverseTest(LinkedList list, LinkedList expected)
         {
-            list.RemoveRangeFromBeginning(count);
-            LinkedList actual = list;
+            list.Reverse();
+            Assert.AreEqual(expected, list);
+        }
+
+        [TestCaseSource(typeof(FindMaxValueTestSource))]
+        public void FindMaxValueTest(LinkedList list, int expected)
+        {
+            int actual = list.FindMaxValue();
             Assert.AreEqual(expected, actual);
         }
     }

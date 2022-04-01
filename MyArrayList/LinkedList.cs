@@ -230,7 +230,7 @@ namespace MyLists
         }
 
         // удаление по индексу N элементов (task 9)
-        public void RemoveRangeFromIndex(int count, int index)
+        public void RemoveRangeFromIndex(int index, int count)
         {
             if (index < 0 || index > Lenght - 1)
             {
@@ -240,13 +240,23 @@ namespace MyLists
             {
                 throw new ArgumentException("count must be >= 0 & < lenght");
             }
-            else if (Lenght - count > index)
+            else if (count + index > Lenght)
             {
-
+                throw new ArgumentException("not enough elements to delete");
             }
             else
             {
-
+                Node crnt = _root;
+                Node prev = crnt;
+                for (int i = index - 1; i < index + count - 1; i++)
+                {
+                    crnt = crnt.Next;
+                }
+                if (index == 0)
+                {
+                    _root = crnt;
+                }
+                prev.Next = crnt.Next;
             }
         }
 
@@ -254,6 +264,81 @@ namespace MyLists
         public int GetLenght()
         {
             return Lenght;
+        }
+
+        // первый индекс по значению(-1 - не нашел) (task 12)
+        public int ReturnFirstIndex(int value)
+        {
+            int result = -1;
+            Node crnt = _root;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if (crnt.Value == value)
+                {
+                    result = i;
+                    break;
+                }
+                crnt = crnt.Next;
+            }
+            return result;
+        }
+
+        // реверс(123 -> 321) (task 14)
+        public void Reverse()
+        {
+            Node crnt = _root;
+            Node prev = null;
+            Node next = null;
+            while (crnt != null)
+            {
+                next = crnt.Next;                
+                crnt.Next = prev;
+                prev = crnt;
+                crnt = next;
+            }
+            _root = prev;
+        }
+
+        // поиск значения максимального элемента (task 15)
+        public int FindMaxValue()
+        {
+            if (Lenght == 0)
+            {
+                throw new ArgumentException("LinkedList is empty");
+            }
+            Node prev = _root;
+            Node crnt = _root.Next;
+            int result = prev.Value;
+            while (crnt != null)
+            {
+                if (crnt.Value > prev.Value)
+                {
+                    result = crnt.Value;
+                }
+                crnt = crnt.Next;
+            }
+            return result;
+        }
+
+        // поиск значения минимального элемента (task 16)
+        public int FindMinValue()
+        {
+            if (Lenght == 0)
+            {
+                throw new ArgumentException("LinkedList is empty");
+            }
+            Node prev = _root;
+            Node crnt = _root.Next;
+            int result = prev.Value;
+            while (crnt != null)
+            {
+                if (crnt.Value < prev.Value)
+                {
+                    result = prev.Value;
+                }
+                crnt = crnt.Next;
+            }
+            return result;
         }
 
         // сортировка по возрастанию (task 19)
