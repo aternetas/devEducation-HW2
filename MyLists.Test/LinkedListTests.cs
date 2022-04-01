@@ -34,5 +34,19 @@ namespace MyLists.Test
             int actual = list.FindMaxValue();
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCaseSource(typeof(SortDescendingTestSource))]
+        public void SortDescendingTest(LinkedList list, LinkedList expected)
+        {
+            list.SortDescending();
+            Assert.AreEqual(expected, list);
+        }
+
+        [TestCaseSource(typeof(AddListLastTestSource))]
+        public void AddListLastTest(LinkedList list, LinkedList actual, LinkedList expected)
+        {
+            actual.AddListLast(list);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

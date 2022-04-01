@@ -334,7 +334,7 @@ namespace MyLists
             {
                 if (crnt.Value < prev.Value)
                 {
-                    result = prev.Value;
+                    result = crnt.Value;
                 }
                 crnt = crnt.Next;
             }
@@ -371,12 +371,64 @@ namespace MyLists
                     prev.Next = crnt.Next;
                     crnt.Next = prev.Next.Next;
                     prev.Next.Next = crnt;
-
                     prev = prev.Next;
                 }
             }
             _tail = GetNodeByIndex(l - 1);
         }
+
+        // сортировка по убыванию (task 20)
+        public void SortDescending()
+        {
+            int l = Lenght;
+            Node crnt;
+            Node prev;
+
+            for (int i = l - 2; i >= 0; i--)
+            {
+                if (i == 0)
+                {
+                    crnt = _root;
+                    if (crnt.Next != null && crnt.Value < crnt.Next.Value)
+                    {
+                        _root = crnt.Next;
+                        crnt.Next = _root.Next;
+                        _root.Next = crnt;
+                    }
+                    prev = _root;
+                }
+                else
+                {
+                    prev = GetNodeByIndex(i - 1);
+                    crnt = prev.Next;
+                }
+                while (crnt.Next != null && crnt.Value < crnt.Next.Value)
+                {
+                    prev.Next = crnt.Next;
+                    crnt.Next = prev.Next.Next;
+                    prev.Next.Next = crnt;
+                    prev = prev.Next;
+                }
+            }
+            _tail = GetNodeByIndex(l - 1);
+        }
+
+        // добавление списка(вашего самодельного) в конец (task 24)
+        public void AddListLast(LinkedList list)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (this._root == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _tail = GetNodeByIndex(Lenght - 1);
+            _tail.Next = list._root;
+            _tail = list._tail;
+        }
+
 
         public override string ToString()
         {
@@ -430,7 +482,6 @@ namespace MyLists
             {
                 crnt = crnt.Next;
             }
-
             return crnt;
         }
     }
