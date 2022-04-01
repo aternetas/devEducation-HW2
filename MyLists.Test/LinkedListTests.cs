@@ -8,26 +8,26 @@ namespace MyLists.Test
     public class LinkedListTests
     {
         [TestCaseSource(typeof(InsertTestCaseSource))]
-        public void InsertTest(int index, int value, ArrayList list, ArrayList expected)
+        public void InsertTest(int index, int value, LinkedList list, LinkedList expected)
         {
             list.Insert(index, value);
-            ArrayList actual = list;
+            LinkedList actual = list;
             Assert.AreEqual(expected, actual);
         }
 
         [TestCaseSource(typeof(RemoveRangeFromEndTestCaseSource))]
-        public void RemoveRangeFromEndTest(int count, ArrayList list, ArrayList expected)
+        public void RemoveRangeFromEndTest(int count, LinkedList list, LinkedList expected)
         {
             list.RemoveRangeFromEnd(count);
-            ArrayList actual = list;
+            LinkedList actual = list;
             Assert.AreEqual(expected, actual);
         }
 
         [TestCaseSource(typeof(RemoveRangeFromBeginningTestCaseSource))]
-        public void RemoveRangeFromBeginningTest(int count, ArrayList list, ArrayList expected)
+        public void RemoveRangeFromBeginningTest(int count, LinkedList list, LinkedList expected)
         {
             list.RemoveRangeFromBeginning(count);
-            ArrayList actual = list;
+            LinkedList actual = list;
             Assert.AreEqual(expected, actual);
         }
     }
