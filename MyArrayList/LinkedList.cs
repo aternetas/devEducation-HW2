@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLists
 {
-    public class LinkedList
+    public class LinkedList : IMyList
     {
         private Node _root;
 
@@ -429,6 +429,41 @@ namespace MyLists
             _tail = list._tail;
         }
 
+        // добавление списка по индексу (task 26)
+        public void AddListByIndex(LinkedList list, int index)
+        {
+            if (index < 0 || index > Lenght)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            if (list._root == null || _root == null)
+            {
+                throw new NullReferenceException();
+            }
+            if (index == 0)
+            {
+                AddListFirst(list);
+            }
+            else if (index == Lenght)
+            {
+                AddListLast(list);
+            }
+            else
+            {
+                Node tmp = _root;
+                Node crnt = list._root;
+                for (int i = 0; i < index - 1; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                while (crnt.Next != null)
+                {
+                    crnt = crnt.Next;
+                }
+                crnt.Next = tmp.Next;
+                tmp.Next = list._root;
+            }
+        }
 
         public override string ToString()
         {

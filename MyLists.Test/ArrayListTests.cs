@@ -6,30 +6,32 @@ using MyLists.Test.ArrayListNegativeTestSources;
 
 namespace MyLists.Test
 {
-    public class ArrayListTests
+    public class ArrayListTests 
     {
+
         [TestCaseSource(typeof(AddLastTestSource))]
-        public void AddLastTest(int value, ArrayList list, ArrayList expectedList)
+        public void AddLast(int value, IMyList list, IMyList expected)
         {
             list.AddLast(value);
-            ArrayList actualList = list;
-            Assert.AreEqual(expectedList, actualList);
+            IMyList actual = list;
+            Assert.AreEqual(expected, actual);
         }
 
+
         [TestCaseSource(typeof(AddFirstTestSource))]
-        public void AddFirstTest(int value, ArrayList list, ArrayList expectedList)
+        public void AddFirstTest(int value, IMyList list, IMyList expected)
         {
             list.AddFirst(value);
-            ArrayList actualList = list;
-            Assert.AreEqual(expectedList, actualList);
+            IMyList actual = list;
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCaseSource(typeof(InsertTestSource))]
-        public void InsertTest(int index, int value, ArrayList list, ArrayList expectedList)
+        public void InsertTest(int index, int value, ArrayList list, ArrayList expected)
         {
             list.Insert(index, value);
             ArrayList actualList = list;
-            Assert.AreEqual(expectedList, actualList);
+            Assert.AreEqual(expected, actualList);
         }
 
         [TestCaseSource(typeof(InsertNegativeTestSource))]
@@ -39,11 +41,11 @@ namespace MyLists.Test
         }
 
         [TestCaseSource(typeof(RemoveLastTestSource))]
-        public void RemoveLastTest(ArrayList list, ArrayList expectedList)
+        public void RemoveLastTest(ArrayList list, ArrayList expected)
         {
             list.RemoveLast();
             ArrayList actualList = list;
-            Assert.AreEqual(expectedList, actualList);
+            Assert.AreEqual(expected, actualList);
         }
 
         [TestCaseSource(typeof(RemoveLast_RemoveFirstNegativeTestSource))]
@@ -53,11 +55,11 @@ namespace MyLists.Test
         }
 
         [TestCaseSource(typeof(RemoveFirstTestSource))]
-        public void RemoveFirstTest(ArrayList list, ArrayList expectedList)
+        public void RemoveFirstTest(ArrayList list, ArrayList expected)
         {
             list.RemoveFirst();
-            ArrayList actualList = list;
-            Assert.AreEqual(expectedList, actualList);
+            ArrayList actual = list;
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCaseSource(typeof(RemoveLast_RemoveFirstNegativeTestSource))]
@@ -315,5 +317,7 @@ namespace MyLists.Test
         {
             Assert.Throws<NullReferenceException>(() => actualList.AddListByIndex(list, index));
         }
+
+
     }
 }

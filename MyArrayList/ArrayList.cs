@@ -1,6 +1,6 @@
 ﻿namespace MyLists
 {
-    public class ArrayList
+    public class ArrayList : IMyList
     {
         public int Lenght { get; private set; }
         public int this[int index]

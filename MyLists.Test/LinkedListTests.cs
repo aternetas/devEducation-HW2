@@ -7,6 +7,15 @@ namespace MyLists.Test
 {
     public class LinkedListTests
     {
+
+        [TestCaseSource(typeof(AddLastTestSource))]
+        public void AddLast(int value, IMyList list, IMyList expected)
+        {
+            list.AddLast(value);
+            IMyList actual = list;
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestCaseSource(typeof(RemoveByIndexTestSource))]
         public void RemoveByIndexTest(int index, LinkedList list, LinkedList expected)
         {
