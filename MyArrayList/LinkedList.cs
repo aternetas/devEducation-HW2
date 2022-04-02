@@ -341,6 +341,46 @@ namespace MyLists
             return result;
         }
 
+        // поиск индекса максимального элемента (task 17)
+        public int FindIndexOfMaxValue()
+        {
+            if (_root is null)
+            {
+                throw new NullReferenceException();
+            }
+            int result = -1;
+            Node crnt = _root;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if (crnt.Value > crnt.Next.Value)
+                {
+                    result = i;
+                }
+                crnt = crnt.Next;
+            }
+            return result;
+        }
+
+        // поиск индекс минимального элемента (task 18)
+        public int FindIndexOfMinValue()
+        {
+            if (_root is null)
+            {
+                throw new NullReferenceException();
+            }
+            int result = -1;
+            Node crnt = _root;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if (crnt.Value < crnt.Next.Value)
+                {
+                    result = i;
+                }
+                crnt = crnt.Next;
+            }
+            return result;
+        }
+
         // сортировка по возрастанию (task 19)
         public void SortAscending()
         {
@@ -413,20 +453,71 @@ namespace MyLists
             _tail = GetNodeByIndex(l - 1);
         }
 
+        // удаление по значению первого(вернуть индекс)(-1 - ничего не удалил) (task 21)
+        public int ClearFirstValue(int value)
+        {
+            if (_root is null)
+            {
+                throw new NullReferenceException();
+            }
+            int result = -1;
+            Node crnt = _root;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if (crnt.Next.Value == value)
+                {
+                    crnt = crnt.Next.Next;
+                    result = i;
+                    break;
+                }
+                crnt = crnt.Next;
+            }
+            return result;
+        }
+
+        // удаление по значению всех(вернуть кол-во)(0 - ничего не удалил) (task 22)
+        public int ClearAllByValue(int value)
+        {
+            if (_root is null)
+            {
+                throw new NullReferenceException();
+            }
+            int result = 0;
+            Node crnt = _root;
+            for (int i = 0; i < Lenght; i++)
+            {
+                if (crnt.Next.Value == value)
+                {
+                    crnt = crnt.Next.Next;
+                    result++;
+                }
+                crnt = crnt.Next;
+            }
+            return result;
+        }
+
         // добавление списка(вашего самодельного) в конец (task 24)
         public void AddListLast(LinkedList list)
         {
-            if (list == null)
+            if (list._root == null || _root == null)
             {
-                throw new ArgumentNullException();
-            }
-            if (this._root == null)
-            {
-                throw new ArgumentNullException();
+                throw new NullReferenceException();
             }
             _tail = GetNodeByIndex(Lenght - 1);
             _tail.Next = list._root;
             _tail = list._tail;
+        }
+
+        // добавление списка в начало (task 25)
+        public void AddListFirst(LinkedList list)
+        {
+            if (list._root == null || _root == null)
+            {
+                throw new NullReferenceException();
+            }
+            list._tail = GetNodeByIndex(Lenght - 1);
+            list._tail.Next = _root;
+            //_root = list._root;
         }
 
         // добавление списка по индексу (task 26)

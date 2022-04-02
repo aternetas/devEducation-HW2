@@ -9,7 +9,7 @@ namespace MyLists.Test
     {
 
         [TestCaseSource(typeof(AddLastTestSource))]
-        public void AddLast(int value, IMyList list, IMyList expected)
+        public void AddLastTest(int value, IMyList list, IMyList expected)
         {
             list.AddLast(value);
             IMyList actual = list;
